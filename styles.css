@@ -1,0 +1,133 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    height: 90px;
+    background-color: #b85353;
+    display: flex;
+}
+
+.header a .logo {
+    height: 90px;
+    width: 90px;
+}
+
+.header h3 {
+    margin-left: 45%;
+    margin-top: 55px;
+    color: white;
+}
+
+.login {
+    display: inline-block;
+    background-color: #f9c2c2;
+    margin-left: 850px;
+    margin-top: 250px;
+    padding: 50px;
+}
+
+.submit-btn {
+    float: right;
+}
+
+.unForm,
+.pwForm {
+    width: 180px;
+}
+
+.button-set {
+    margin: auto;
+    margin-top: 300px;
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.button-set a {
+    background-color: #902222;
+    color: #fff;
+    font-size: 40px;
+    text-decoration: none;
+    padding: 55px 50px;
+}
+
+.button set a:hover {
+    background-color: #924747;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+}
+
+.side {
+    width: 20%;
+    border-right: 3px solid black;
+}
+
+.main-content {
+    width: 80%;
+}
+
+.form-set {
+    padding-left: 20px;
+}
+
+.footer {
+    padding: 18px;
+}
+
+.search-section {
+    margin-left: 50%;
+    margin-top: 250px;
+}
+
+.search-section h2 {
+    color: #1b8a83;
+}
+
+.search-section input[type="text"] {
+    height: 100px;
+    width: 300px;
+    font-size: 38px;
+}
+
+.search-section input[type="submit"] {
+    background-color: #902222;
+    border: none;
+    padding: 18px 16px;
+    font-size: 18px;
+    color: white;
+}
+
+.tempPic {
+    width: 200px;
+    height: 200px;
+}
+
+.viewBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.viewBox .side {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    height: 100vh;
+    border-right: 3px solid #000;
+}
+
+.viewBox .viewSection {
+    width: 75%;
+    height: 100vh;
+}
+
+.viewBox .side .profilePic {
+    margin-top: 50px;
+    width: 75%;
+    height: 30%;
+}
