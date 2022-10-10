@@ -1,17 +1,14 @@
 <?php
 session_start();
 include "connection.php";
-if (isset($_SESSION['loggedInAsAdmin']) && $_SESSION['loggedInAsAdmin']) {
-    header("Location:admin.php");
+if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
+    header("Location:user.php");
 }
-if (!$_SESSION['loggedInAsUser']) {
+if (!$_SESSION['loggedInAsAdmin']) {
     header("Location:login.php");
 }
 
-$sql = "SELECT * FROM " . $tableName . " WHERE stud_id='" . $_SESSION["stud_id"] . "';";
-$getUser = mysqli_query($conn, $sql);
-
-$stud_data = mysqli_fetch_array($getUser);
+$id = unserialize(urldecode($_GET['studID']));
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +27,16 @@ $stud_data = mysqli_fetch_array($getUser);
         <a href="#"><img class="logo" src="images/placeholder.png" /></a>
         <h3>School Name</h3>
     </div>
+
+<?php
+$sql = "SELECT * FROM " . $tableName . " WHERE stud_id = '" . $id['stud_id'] . "';";
+$query = mysqli_query($conn, $sql);
+
+$stud_data = mysqli_fetch_array($query);
+if (!is_array($stud_data)) {
+    die("ERROR WITH FETCHING THE DATA");
+}
+?>
 
     <div class="viewBox">
         <div class="side">
@@ -71,7 +78,7 @@ $stud_data = mysqli_fetch_array($getUser);
         </div>
     </div>
 
-    <a href="logout.php">Logout</a>
+    <a href="admin.php">Back to Admin</a>
 
     <div class="footer">
                 <hr>
