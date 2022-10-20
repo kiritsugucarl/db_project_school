@@ -22,9 +22,16 @@ if (!$_SESSION['loggedInAsAdmin']) {
 
 <body>
     <div class="header">
-        <a href="#"><img class="logo" src="images/placeholder.png" /></a>
-        <h3>School Name</h3>
+        <div class="header-school">
+            <p class="header-title"><b>OURAN</b></p>
+            <a href="#"><img class="header-logo" src="images/ouran-logo.png" /></a>
+            <p class="header-title"><b>ACADEMY</b></p>
         </div>
+        <div class="header-menu">
+            <a href="admin.php" class="menu">MAIN MENU</a>
+            <a href="logout.php" class="logout">LOGOUT</a>
+        </div>
+    </div>
 <?php
 $student_id = $_POST['stud_id'];
 $name = $_POST['name'];
@@ -79,7 +86,7 @@ if (isset($_POST['update'])) {
         " WHERE stud_id =" . $student_id . ";";
     $process = mysqli_query($conn, $sql);
     if ($process) {
-        echo "INFORMATION OF " . $name . " WITH STUDENT ID OF " . $student_id . " UPDATED";
+        echo '<p class="updated"> ' . 'INFORMATION OF ' . $name . ' WITH STUDENT ID OF ' . $student_id . ' <span style="color: Green"><b>UPDATED!</b></span>' . '</p>';
     } else {
         die("ERROR . " . $conn->connect_error);
     }
@@ -90,8 +97,8 @@ if (isset($_POST['delete'])) {
     $sql = "DELETE FROM " . $tableName . " WHERE stud_id=" . $student_id . ";";
     $process = mysqli_query($conn, $sql);
 
-    if ($process) {
-        echo "INFORMATION OF " . $name . " WITH STUDENT ID OF " . $student_id . " IS NOW DELETED";
+    if ($process) { 
+        echo '<p class="deleted"> ' . 'INFORMATION OF ' . $name . ' WITH STUDENT ID OF ' . $student_id . ' IS NOW <span style="color: Red"><b>DELETED</b></span>' . '</p>';
     } else {
         die("ERROR . " . $conn->connect_erorr);
     }
@@ -99,9 +106,9 @@ if (isset($_POST['delete'])) {
 
 ?>
 
-<a href="admin.php">Back to admin</a>
-
-
+    <div class="footerUpdate">
+        <p>ALL RIGHTS RESERVED 2022 | SYBIL SYSTEM</p>
+    </div>
 </body>
 </html>
 

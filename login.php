@@ -16,25 +16,22 @@ if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>OR Portal LOGIN</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-    <div class="header">
-        <a href="index.php"><img class="logo" src="images/placeholder.png" /></a>
-        <h3>School Name</h3>
-    </div>
-
     <div class="main-page">
         <div class="login">
+        <img src="images/ouran-logo.png" alt="Ouran Academy" class=logo>
+            <div class="school-title">
+                <p><b>OURAN ACADEMY PORTAL</b></p>
+            </div>
             <form action="<?=$_SERVER['PHP_SELF'];?>" method="POST">
-                <span>Username &nbsp;</span>
-                <input class="unForm" type="text" name="username" placeholder="Username" required />
+                <input class="unForm" type="text" name="username" placeholder="Enter Student ID" required />
                 <br />
                 <br />
-                <span>Password &nbsp;&nbsp;</span>
-                <input class="pwForm" type="password" name="password" placeholder="Password" required />
+                <input class="pwForm" type="password" name="password" placeholder="Enter Password" required />
                 <br />
                 <br />
                 <input class="submit-btn" type="submit" name="login" value="Log In" />

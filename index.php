@@ -6,6 +6,8 @@ $password = "";
 $dbName = "school_sys_proto";
 $tableName = "user";
 
+echo '<div class="loading-container">';
+
 # =========================== INITIAL CONNECTION ==============================
 $conn = mysqli_connect($host, $user, $password);
 if ($conn->connect_error) {
@@ -18,7 +20,7 @@ $retval = mysqli_query($conn, $sql);
 if (!$retval) {
     die('DATABASE CREATION FAILED ' . mysqli_error($this->db_link));
 } else {
-    echo 'DATABASE ' . $dbName . ' CREATION SUCCESS </br>';
+    echo '<p><br>DATABASE ' . $dbName . ' CREATION SUCCESS</p>';
 }
 
 # ========================== NEW CONNECTIOJN ===================================
@@ -59,10 +61,10 @@ $retval = mysqli_query($conn, $sql);
 if (!$retval) {
     die('TABLE CREATION FAILED ' . mysqli_error($this->db_link));
 } else {
-    echo 'TABLE ' . $tableName . " CREATION SUCCESS </br>";
+    echo '<p>TABLE ' . $tableName . ' CREATION SUCCESS </p>';
 }
 
-# ============================== AMDIN CONNECTION ============================
+# ============================== ADMIN CONNECTION ============================
 
 $sql = "SELECT * FROM " . $tableName . " WHERE username ='admin'";
 $retval = mysqli_query($conn, $sql);
@@ -70,10 +72,10 @@ $row = mysqli_fetch_array($retval);
 
 if(is_array($row))
 {
-    echo 'ADMIN CONNECTED !';
+    echo '<p style="color: Green"><b>ADMIN CONNECTED!</b></p><br>';
 }
 else{
-    echo 'ADMIN FAILED TO CONNECT';
+    echo '<p style="color: Red"><b>ADMIN FAILED TO CONNECT!</b></p><br>';
 }
 ?>
 
@@ -84,15 +86,19 @@ else{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>LOADING</title>
 </head>
 <body>
-    <p>Redirecting to school portal....</p><a href="login.php">Click to head to the page if it doesnt return at 5 seconds.</a>
-
+    <p style="text-align: center">Redirecting to school portal....</p>
+    <a href="login.php"><p style="text-align: center" class="redirecting"><b>Click to head to the page if it doesnt return at 5 seconds.</b></p></a>
+</div>
+<!--
     <script>
         setTimeout(function(){
             window.location.href='login.php';
         }, 5000);
     </script>
+    -->
 </body>
 </html>

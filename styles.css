@@ -1,119 +1,325 @@
+/*
+ Palagayan ng comment para masort bi after neto ayaw ko nga -_-
+*/
+
 html,
-body {
+body    {
     margin: 0;
     padding: 0;
 }
 
-.header {
-    height: 90px;
-    background-color: #b85353;
-    display: flex;
+*   {
+    font-family: 'Libre Baskerville', serif;
 }
 
-.header a .logo {
-    height: 90px;
-    width: 90px;
+body    {
+    background-color: #f8f8ff;
 }
 
-.header h3 {
-    margin-left: 45%;
-    margin-top: 55px;
-    color: white;
+.loading-container  {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 13em;
 }
 
-.login {
+.redirecting    {
+    color: #000;
+}
+
+.logo   {
+    height: 150px;
+    width: 110px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login  {
+    justify-content: center;
     display: inline-block;
-    background-color: #f9c2c2;
-    margin-left: 850px;
-    margin-top: 250px;
-    padding: 50px;
+    background-color: #020101;
+    box-shadow: 0 0 25px 10px rgba(0, 0, 0, .25);
+    border-radius: 1em;
+    margin-left: 31em;
+    margin-top: 3.6em;
+    padding: 55px;
 }
 
-.submit-btn {
-    float: right;
+.school-title   {
+    text-align: center;
+    color: #dfab52;
+    margin-bottom: 3em;
 }
 
 .unForm,
 .pwForm {
-    width: 180px;
+    background-color: #f8f8ff;
+    color: #020101;
+    border: 0.2em #dfab52 solid;
+    margin: 1em;
+    width: 249px;
+    height: 30px;
+}
+
+.submit-btn {
+    float: right;
+    background-color: #dfab52;
+    transition: 0.4s;
+    margin-top: 1em;
+    margin-right: 1em;
+    width: 60px;
+    height: 35px;
+}
+
+.submit-btn:hover   {
+    background-color: #ffa800;
+}
+
+.header {
+    display: flex;
+    background-color: #dfab52;
+}
+
+.header-school  {
+    display: flex;
+    flex-basis: 75%;
+    justify-content: flex-end;
+}
+
+.header-title   {
+    font-family: 'Libre Baskerville', serif;
+    color: #020101;
+    font-size: 2.5em;
+    margin-top: 1.2em;
+    margin-right: 1em;
+}
+
+.header-logo    {
+    margin-left: auto;
+    margin-right: 2em;
+    margin-top: 1em;
+    margin-bottom: 1.2em;
+    height: 100px;
+    width: 75px;
+}
+
+.header-menu    {
+    display: flex;
+    justify-content : space-evenly;
+    margin-top: auto;
+    flex-basis: 25%;
+}
+
+.header-menu span, .header-menu a{
+    margin-bottom: 10px;
+}
+
+.header-menu a{
+    text-decoration: none;
+}
+
+.menu,
+.logout,
+.enroll   {
+    color: #020101;
+    padding: 0.8em;
+    transition: 2s;
+}
+
+.menu:hover,
+.logout:hover,
+.enroll:hover,
+.submitForm:hover,
+.confirmForm:hover   {
+    border-radius: 1em;
+    background-color: #020101;
+    color: #f8f8ff;
+}
+
+.username   {
+    margin-left: 3em;
 }
 
 .button-set {
-    margin: auto;
-    margin-top: 300px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     justify-content: space-between;
+    margin-top: 150px;
     width: 60%;
 }
 
-.button-set a {
-    background-color: #902222;
-    color: #fff;
-    font-size: 40px;
-    text-decoration: none;
-    padding: 55px 50px;
-}
-
-.button set a:hover {
-    background-color: #924747;
-}
-
-.box {
+.button-set a   {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    background-color: #dfab52;
+    color: #020101;
+    font-size: 20px;
+    padding: 1em 1em 1em;
+    transition: 1s;
 }
 
-.side {
-    width: 20%;
-    border-right: 3px solid black;
+
+.button-set a:hover {
+    background-color: #020101;
+    color: #fff;
+    border-radius: 1em;
 }
 
-.main-content {
-    width: 80%;
+.button-set a i {
+    margin-right: 1em;
 }
 
-.form-set {
-    padding-left: 20px;
+.enroll-btn,
+.update-btn,
+.view-btn   {
+    height: 80px;
+    width: 80px;
 }
 
-.footer {
-    padding: 18px;
+.border,
+.border-1,
+.borderProcess,
+.borderProcess-1,
+.borderUpdate,
+.borderUpdate-1 {
+    margin: auto;
+    border: 0.1em #f8f8ff solid;
+    box-shadow: 0 0 25px 10px rgba(0, 0, 0, .15);
+    border-radius: 0.5em;
+    width: 50em;
+}
+
+.borderProcess {
+    margin-top: 2em;
+    height: 16.5em;
+}
+
+.borderProcess-1     {
+    margin-top: 3em;
+    height: 62em;
+}
+
+.borderUpdate   {
+    margin-top: 2em;
+    height: 19em;
+}
+
+.borderUpdate-1 {
+    margin-top: 3em;
+    height: 51em;
+}
+
+
+.border {
+    margin-top: 2em;
+    height: 21.5em;
+}
+
+.border-1 {
+    margin-top: 3em;
+    height: 54.5em;
+}
+
+.line   {
+    color: #dfab52;
+    margin-left: 0.5em;
+}
+
+.form-set  {
+    margin-left: 2em;
+}
+
+.form-set input[type=text], 
+.form-set input[type= password] {
+    border: #ffa800 solid 2px;
+    width: 17em;
+    height: 1em;
+}
+
+.selectText,
+.submitForm,
+.confirmForm,
+.updateForm,
+.deleteForm {
+    border: #ffa800 solid 2px;
+}
+
+.submitForm,
+.confirmForm {
+    margin-left: 49.5em;
+    border-radius: 1em;
+    padding: 0.5em;
+}
+
+.successForm  {
+    font-size: 2em;
+    margin-left: 1em;
+}
+
+.updated,
+.deleted    {
+    font-size: 1.5em;
+    margin-left: 1em;
+} 
+
+.submitContainer{
+    float: right;
+}
+
+.updateForm,
+.deleteForm {
+    border-radius: 1em;
+    padding: 0.5em;
+    margin-right: 3em;
+    margin-top: 1em;
 }
 
 .search-section {
-    margin-left: 50%;
-    margin-top: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height:  500px;
 }
 
-.search-section h2 {
-    color: #1b8a83;
+.search-section h2  {
+    color: #ffa800;
+    text-align: center;
 }
 
-.search-section input[type="text"] {
+.search-section form{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-section input[type="text"]  {
     height: 100px;
     width: 300px;
     font-size: 38px;
 }
 
-.search-section input[type="submit"] {
-    background-color: #902222;
+.search-section input[type="submit"]    {
     border: none;
     padding: 18px 16px;
     font-size: 18px;
-    color: white;
+    color: #ffa800;
+    background-color: #020101;
 }
 
-.tempPic {
+.tempPic    {
     width: 200px;
     height: 200px;
 }
 
-.viewBox {
+.viewBox    {
     display: flex;
     flex-direction: row;
 }
 
-.viewBox .side {
+.viewBox .side  {
     display: flex;
     flex-direction: column;
     width: 25%;
@@ -121,13 +327,42 @@ body {
     border-right: 3px solid #000;
 }
 
-.viewBox .viewSection {
+.viewBox .viewSection   {
     width: 75%;
     height: 100vh;
 }
 
-.viewBox .side .profilePic {
+.viewBox .side .profilePic  {
     margin-top: 50px;
     width: 75%;
     height: 30%;
+}
+
+.footer,
+.footerProcess,
+.footerUpdate {
+    text-align: center;
+    border-top: 1px solid #ffa800;
+}
+
+.footer {
+    margin-top: 12.7em;
+}
+
+.footerProcess  {
+    margin-top: 25em;
+}
+
+.footerUpdate   {
+    margin-top: 33em;
+}
+
+.footer p,
+.footerProcess p,
+.footerUpdate   {
+    font-size: small;
+}
+
+select{
+    position: relative;
 }

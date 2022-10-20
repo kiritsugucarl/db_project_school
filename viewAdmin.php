@@ -22,10 +22,16 @@ if (!$_SESSION['loggedInAsAdmin']) {
 
 <body>
     <div class="header">
-        <a href="#"><img class="logo" src="images/placeholder.png" /></a>
-        <h3>School Name</h3>
+        <div class="header-school">
+            <p class="header-title"><b>OURAN</b></p>
+            <a href="#"><img class="header-logo" src="images/ouran-logo.png" /></a>
+            <p class="header-title"><b>ACADEMY</b></p>
+        </div>
+        <div class="header-menu">
+            <a href="admin.php" class="menu">MAIN MENU</a>
+            <a href="logout.php" class="logout">LOGOUT</a>
+        </div>
     </div>
-
     <div class="search-section">
         <h2>VIEW EXISTING DATA</h2>
         <form action="<?=$_SERVER['PHP_SELF'];?>" method="GET">

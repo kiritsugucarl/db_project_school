@@ -52,18 +52,33 @@ if (isset($_POST['confirm'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Enrollment</title>
+    <title>OR Portal | Confirm Enrollment</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="header">
-        <a href="#"><img class="logo" src="images/placeholder.png" /></a>
-        <h3>School Name</h3>
+        <div class="header-school">
+            <p class="header-title"><b>OURAN</b></p>
+            <a href="#"><img class="header-logo" src="images/ouran-logo.png" /></a>
+            <p class="header-title"><b>ACADEMY</b></p>
+        </div>
+        <div class="header-menu">
+            <a href="admin.php" class="menu">MAIN MENU</a>
+            <a href="enroll.php" class="enroll">ENROLL</a>
+        </div>
     </div>
-
-    Enrolled successfully
-
-    <a href="admin.php">Admin</a>
-    <a href="enroll.php">Enroll Again</a>
+    <?php
+    $sql = "SELECT stud_id FROM " . $tableName . " WHERE name='" . $name . "' AND username='" .$username . "';";
+    $retval = mysqli_query($conn, $sql);
+    $stud_id = mysqli_fetch_array($retval);
+    if(!$retval)
+    {
+        die("ERROR ON DATABASE") ;
+    }
+    ?>
+    <p class="successForm">Enrolled <?php echo $name ?> with Student ID  <?php echo $stud_id['stud_id'] ?><b style="color: Green">  successfully!</b></p>
+    <div class="footerProcess">
+        <p>ALL RIGHTS RESERVED 2022 | SYBIL SYSTEM</p>
+    </div> 
 </body>
 </html>

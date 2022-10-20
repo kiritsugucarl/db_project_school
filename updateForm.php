@@ -24,13 +24,16 @@ $id = unserialize(urldecode($_GET['studID']));
 
 <body>
     <div class="header">
-        <a href="#"><img class="logo" src="images/placeholder.png" /></a>
-        <h3>School Name</h3>
-    </div>
-
-    <div class="box">
-        <div class="side">
+        <div class="header-school">
+            <p class="header-title"><b>OURAN</b></p>
+            <a href="#"><img class="header-logo" src="images/ouran-logo.png" /></a>
+            <p class="header-title"><b>ACADEMY</b></p>
         </div>
+        <div class="header-menu">
+            <a href="admin.php" class="menu">MAIN MENU</a>
+            <a href="logout.php" class="logout">LOGOUT</a>
+        </div>
+    </div>
 
 <?php
 $sql = "SELECT * FROM " . $tableName . " WHERE stud_id = '" . $id['stud_id'] . "';";
@@ -41,10 +44,12 @@ if (!is_array($stud_data)) {
     die("ERROR WITH FETCHING THE DATA");
 }
 ?>
-        <div class="main-content">
+        <div class="borderUpdate">
             <form autocomplete="off" action="updateProcess.php" method="POST" enctype="multipart/form-data">
+                <h1 class="line">ACCOUNT DETAILS</h1>
+                <hr>
+                <br>
                 <div class="form-set">
-                    <h1>ACCOUNT DETAILS</h1>
                     <span>Student ID : <?php echo $stud_data['stud_id']; ?> </span>
                     <input type="hidden" name="stud_id" value="<?php echo $stud_data['stud_id']; ?>">
                     <br><br>
@@ -57,12 +62,15 @@ if (!is_array($stud_data)) {
                     <span>E-Mail Address : </span>
                     <input autocomplete="new-password" type="text" name="emailAddress" value="<?php echo $stud_data['emailAddress']; ?>" required><br><br>
                 </div>
-                <hr>
+        </div>
+        <div class="borderUpdate-1">
+            <h1 class="line">IMPORTANT INFORMATION</h1>
+            <hr>
+            <br>
                 <div class="form-set">
-                    <h1>Important Information</h1>
                     <!-- DEPARTMENT SECTION --->
                     <span>Department: </span>
-                    <select name="department" required>
+                    <select class="selectText" name="department" required>
                         <option value= "<?php echo $stud_data['department']; ?>" selected hidden > <?php echo $stud_data['department']; ?> </option>
                         <option value="College of Engineering and Architecture">College of Engineering and Architecture</option>
                         <option value="College of Arts and Sciences">College of Arts and Sciences</option>
@@ -73,7 +81,7 @@ if (!is_array($stud_data)) {
 
                     <!-- LEVEL SECTION --->
                     <span>Level : </span>
-                    <select name="level" required>
+                    <select class="selectText" name="level" required>
                         <option value="<?php echo $stud_data['level']; ?>"  selected hidden><?php echo $stud_data['level']; ?></option>
                         <option value="First Year">First Year</option>
                         <option value="Second Year">Second Year</option>
@@ -83,7 +91,7 @@ if (!is_array($stud_data)) {
 
                     <!-- COURSE SELECTION --->
                     <span>Course : </span>
-                    <select name="course" required>
+                    <select class="selectText" name="course" required>
                         <option value="<?php echo $stud_data['course']; ?>" selected hidden><?php echo $stud_data['course']; ?></option>
                         <option value="" disabled>==========COLLEGE OF ENGINEERING AND ARCHITECTURE ==========</option>
                         <option value="Bachelor of Science in Mechanical Enginnering">Bachelor of Science in Mechanical Enginnering</option>
@@ -130,13 +138,13 @@ if (!is_array($stud_data)) {
                         <option value="Bachelor of Science in Physical Education">Bachelor of Science in Physical Education</option>
 
                     </select> <br> <br>
-
+                    
                     <span>Birthdate : </span>
-                    <input type="date" name="birthdate" value=<?php echo $stud_data['birthday']; ?> required><br><br>
+                    <input class="selectText" type="date" name="birthdate" value=<?php echo $stud_data['birthday']; ?> required><br><br>
 
                     <!-- GENDER SELECTION --->
                     <span>Gender : </span>
-                    <select name="gender" required>
+                    <select class="selectText" name="gender" required>
                         <option value="<?php echo $stud_data['gender']; ?>" selected hidden><?php echo $stud_data['gender']; ?></option>
                         <option value="M">Male</option>
                         <option value="F">Female</option>
@@ -146,7 +154,7 @@ if (!is_array($stud_data)) {
                     <span>Religion : </span>
                     <input autocomplete="new-password" type="text" name="religion" value="<?php echo $stud_data['religion']; ?>" required><br><br>
                     <span>Marital Status : </span>
-                    <select name="maritalStat" required>
+                    <select class="selectText" name="maritalStat" required>
                         <option value="<?php echo $stud_data['mariStat']; ?>" selected hidden><?php echo $stud_data['mariStat']; ?></option>
                         <option value="Single">Single</option>
                         <option value="Married">Married</option>
@@ -171,18 +179,16 @@ if (!is_array($stud_data)) {
                     <input autocomplete="new-password" type="text" name="mothersName" value="<?php echo $stud_data['mothers_name']; ?>" required> <br> <br>
                     <span> Father's Name :  </span>
                     <input autocomplete="new-password" type="text" name="fathersName" value="<?php echo $stud_data['fathers_name']; ?>" required> <br> <br>
-                    <input type="submit" name="update" value="UPDATE">
-                    <input type="submit" name="delete" value="DELETE DATA">
+                    <div class="submitContainer">
+                        <input class="updateForm" type="submit" name="update" value="UPDATE">
+                        <input class="deleteForm" type="submit" name="delete" value="DELETE DATA">
+                    </div>
                 </div>
             </form>
-
-            <div class="footer">
-                <hr>
-                <span>Copyright 2022. All Rights Reserved</span>
-            </div>
         </div>
-
-
+    <div class="footer">
+        <p>ALL RIGHTS RESERVED 2022 | SYBIL SYSTEM</p>
+    </div>
 </body>
 
 </html>
