@@ -1,9 +1,14 @@
 <?php
+# Start the Session
 session_start();
 include 'connection.php';
+
+# Check if the person logged in is the user or admin
+# If logged in is user, then redirect to user.php to avoid unwanted connection
 if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
     header("Location:user.php");
 }
+# If nothing is logged in, redirect to login.php to prompt for login
 if (!$_SESSION['loggedInAsAdmin']) {
     header("Location:login.php");
 }
@@ -16,27 +21,32 @@ if (!$_SESSION['loggedInAsAdmin']) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OR Portal | Enroll Page</title>
+    <title>OA Portal | Enroll Page</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/ouran-logo.png" />
 </head>
 
 <body>
     <div class="header">
+
         <div class="header-school">
             <p class="header-title"><b>OURAN</b></p>
             <a href="#"><img class="header-logo" src="images/ouran-logo.png" /></a>
             <p class="header-title"><b>ACADEMY</b></p>
         </div>
+
         <div class="header-menu">
             <a href="admin.php" class="menu">MAIN MENU</a>
             <a href="logout.php" class="logout">LOGOUT</a>
         </div>
     </div>
+
     <div class="border">
         <form autocomplete="off" action="enrollValidation.php" method="POST" enctype="multipart/form-data">
             <h1 class="line">ACCOUNT DETAILS</h1>
             <hr>
             <br>
+            <!-- ACCOUNT INFORMATION SECTION -->
             <div class="form-set">
                 <span>First Name : </span>
                 <input autocomplete="new-password" type="text" name="fName" required> <br><br>
@@ -52,6 +62,7 @@ if (!$_SESSION['loggedInAsAdmin']) {
                 <input autocomplete="new-password" type="text" name="email_add" required><br><br>
             </div>
     </div>
+
     <div class="border-1">
         <h1 class="line">IMPORTANT INFORMATION</h1>
         <hr>

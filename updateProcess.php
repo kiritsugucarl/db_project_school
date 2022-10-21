@@ -1,9 +1,14 @@
 <?php
+# Start the Session
 session_start();
 include 'connection.php';
+
+# Check if the person logged in is the user or admin
+# If logged in is user, then redirect to user.php to avoid unwanted connection
 if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
     header("Location:user.php");
 }
+# If nothing is logged in, redirect to login.php to prompt for login
 if (!$_SESSION['loggedInAsAdmin']) {
     header("Location:login.php");
 }
@@ -16,8 +21,9 @@ if (!$_SESSION['loggedInAsAdmin']) {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update Form</title>
+    <title>OA Portal | Update Process</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/ouran-logo.png" />
 </head>
 
 <body>
@@ -32,9 +38,13 @@ if (!$_SESSION['loggedInAsAdmin']) {
             <a href="logout.php" class="logout">LOGOUT</a>
         </div>
     </div>
+    <div class="page-content">
 <?php
+# Post Every Other Data Gathered In Update Form
 $student_id = $_POST['stud_id'];
 $name = $_POST['name'];
+
+# If the Query is to Update
 if (isset($_POST['update'])) {
     # Account Details
     $username = $_POST['username'];
@@ -62,6 +72,7 @@ if (isset($_POST['update'])) {
     $mothersName = $_POST['mothersName'];
     $fathersName = $_POST['fathersName'];
 
+    # MySql Query  to Insert the Data into the Database
     $sql = "UPDATE " . $tableName . " SET username='" . $username . "'," .
         "password='" . $password . "'," .
         "name='" . $name . "'," .
@@ -86,27 +97,29 @@ if (isset($_POST['update'])) {
         " WHERE stud_id =" . $student_id . ";";
     $process = mysqli_query($conn, $sql);
     if ($process) {
-        echo '<p class="updated"> ' . 'INFORMATION OF ' . $name . ' WITH STUDENT ID OF ' . $student_id . ' <span style="color: Green"><b>UPDATED!</b></span>' . '</p>';
+        echo '<p class="updated"> ' . 'INFORMATION OF <span class="processText">' . $name . '</span>' . ' WITH STUDENT ID OF <span class="processText">' . $student_id . '</span> <span style="color: Green"><b>UPDATED!</b></span>' . '</p>';
     } else {
         die("ERROR . " . $conn->connect_error);
     }
 
 }
 
+# If the Query is to Delete
 if (isset($_POST['delete'])) {
     $sql = "DELETE FROM " . $tableName . " WHERE stud_id=" . $student_id . ";";
     $process = mysqli_query($conn, $sql);
 
-    if ($process) { 
-        echo '<p class="deleted"> ' . 'INFORMATION OF ' . $name . ' WITH STUDENT ID OF ' . $student_id . ' IS NOW <span style="color: Red"><b>DELETED</b></span>' . '</p>';
+    # Display the confirmation message if the process is successful
+    if ($process) {
+        echo '<p class="deleted"> ' . 'INFORMATION OF <span class="processText">' . $name . '</span> WITH STUDENT ID OF <span class="processText">' . $student_id . '</span> IS NOW <span style="color: Red"><b>DELETED</b></span>' . '</p>';
     } else {
         die("ERROR . " . $conn->connect_erorr);
     }
 }
 
 ?>
-
-    <div class="footerUpdate">
+    </div>
+    <div class="footer">
         <p>ALL RIGHTS RESERVED 2022 | SYBIL SYSTEM</p>
     </div>
 </body>

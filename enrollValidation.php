@@ -1,9 +1,14 @@
 <?php
+# Start the Session
 session_start();
 include 'connection.php';
+
+# Check if the person logged in is the user or admin
+# If logged in is user, then redirect to user.php to avoid unwanted connection
 if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
     header("Location:user.php");
 }
+# If nothing is logged in, redirect to login.php to prompt for login
 if (!$_SESSION['loggedInAsAdmin']) {
     header("Location:login.php");
 }
@@ -35,6 +40,7 @@ $cPerNum = $_POST['cPerNum'];
 $mothersName = $_POST['mothersName'];
 $fathersName = $_POST['fathersName'];
 
+# File Handling Code
 if (isset($_FILES['picture'])) {
     $file = $_FILES['picture'];
 
@@ -49,11 +55,17 @@ if (isset($_FILES['picture'])) {
 
     $allowed = array('jpg', 'jpeg', 'png', 'webp');
 
+    # Check if the file extension is in the allowed file types
     if (in_array($fileActualExt, $allowed)) {
+        # Check if there is no File Error
         if ($fileError === 0) {
+            # Check if the File Size isnt very big
             if ($fileSize < 1000000) {
+                # Create a unique image id for the uploads
                 $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                # The information where it directs to the exact file path from the root
                 $picture = "images/uploads/" . $fileNameNew;
+                # Move the uploaded file to the file destination
                 move_uploaded_file($fileTmpName, $picture);
             } else {
                 header("Location:enroll.php");
@@ -76,8 +88,9 @@ if (isset($_FILES['picture'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OR Portal | Confirm Enrollment</title>
+    <title>OA Portal | Confirm Enrollment</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" type="image/x-icon" href="images/ouran-logo.png" />
 </head>
 <body>
     <div class="header">
@@ -91,13 +104,14 @@ if (isset($_FILES['picture'])) {
             <a href="logout.php" class="logout">LOGOUT</a>
         </div>
     </div>
+
     <div class="borderProcess">
         <form action="enrollProcess.php" method="POST" enctype="multipart/form-data">
             <h1 class="line">ACCOUNT DETAILS</h1>
             <hr>
             <br>
             <div class="form-set">
-                <span><b>Full Name : </b><?php echo$name ?></span>
+                <span><b>Full Name : </b><?php echo $name ?></span>
                 <?php echo "<input type='hidden' name='name' value='" . $name . "'>"; ?>
                 <br><br>
                 <span><b>Username  : </b><?php echo $username ?></span>
@@ -110,6 +124,7 @@ if (isset($_FILES['picture'])) {
                 <?php echo "<input type='hidden' name='email_add' value='" . $email_add . "'>"; ?>
             </div>
     </div>
+
     <div class="borderProcess-1">
         <h1 class="line">IMPORTANT INFORMATION</h1>
             <hr>
@@ -173,9 +188,9 @@ if (isset($_FILES['picture'])) {
                 <input class="confirmForm" type="submit" name="confirm" value="CONFIRM">
             </div>
         </form>
-    </div> 
+    </div>
     <div class="footer">
         <p>ALL RIGHTS RESERVED 2022 | SYBIL SYSTEM</p>
-    </div>       
+    </div>
 </body>
 </html>

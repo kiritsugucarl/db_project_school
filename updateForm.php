@@ -1,13 +1,19 @@
 <?php
+# Start the Session
 session_start();
 include 'connection.php';
+
+# Check if the person logged in is the user or admin
+# If logged in is user, then redirect to user.php to avoid unwanted connection
 if (isset($_SESSION['loggedInAsUser']) && $_SESSION['loggedInAsUser']) {
     header("Location:user.php");
 }
+# If nothing is logged in, redirect to login.php to prompt for login
 if (!$_SESSION['loggedInAsAdmin']) {
     header("Location:login.php");
 }
 
+# Unserialize the serailized url
 $id = unserialize(urldecode($_GET['studID']));
 ?>
 
@@ -18,8 +24,9 @@ $id = unserialize(urldecode($_GET['studID']));
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update Form</title>
+    <title>OA Portal | Update Form</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="images/ouran-logo.png" />
 </head>
 
 <body>
@@ -36,9 +43,11 @@ $id = unserialize(urldecode($_GET['studID']));
     </div>
 
 <?php
+# MySql Query to fetch all the data matching the stud_id
 $sql = "SELECT * FROM " . $tableName . " WHERE stud_id = '" . $id['stud_id'] . "';";
 $query = mysqli_query($conn, $sql);
 
+# Fetch the data in the array
 $stud_data = mysqli_fetch_array($query);
 if (!is_array($stud_data)) {
     die("ERROR WITH FETCHING THE DATA");
@@ -49,6 +58,7 @@ if (!is_array($stud_data)) {
                 <h1 class="line">ACCOUNT DETAILS</h1>
                 <hr>
                 <br>
+
                 <div class="form-set">
                     <span>Student ID : <?php echo $stud_data['stud_id']; ?> </span>
                     <input type="hidden" name="stud_id" value="<?php echo $stud_data['stud_id']; ?>">
@@ -63,6 +73,7 @@ if (!is_array($stud_data)) {
                     <input autocomplete="new-password" type="text" name="emailAddress" value="<?php echo $stud_data['emailAddress']; ?>" required><br><br>
                 </div>
         </div>
+
         <div class="borderUpdate-1">
             <h1 class="line">IMPORTANT INFORMATION</h1>
             <hr>
@@ -138,7 +149,7 @@ if (!is_array($stud_data)) {
                         <option value="Bachelor of Science in Physical Education">Bachelor of Science in Physical Education</option>
 
                     </select> <br> <br>
-                    
+
                     <span>Birthdate : </span>
                     <input class="selectText" type="date" name="birthdate" value=<?php echo $stud_data['birthday']; ?> required><br><br>
 
